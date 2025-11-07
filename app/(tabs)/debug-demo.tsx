@@ -86,7 +86,8 @@ export default function DebugDemoScreen() {
       console.log('🌐 Response headers:', Object.fromEntries(response.headers));
       
       const data = await response.json();
-      console.log('✅ API Response data:', data);
+      console.log('✅ API Response data');
+      console.table(Object.values(data));
       
       setUsers(data);
       setUser(data[0]);
@@ -105,7 +106,7 @@ export default function DebugDemoScreen() {
     // ❌ Forma incorrecta - mostrará valor anterior
     console.log('❌ Counter before incorrect update:', counter);
     setCounter(counter + 1);
-    console.log('❌ Counter after incorrect update (shows old value):', counter);
+    console.warn('❌ Counter after incorrect update (shows old value):', counter);
     
     // ✅ Forma correcta - con callback
     setCounter(prevCounter => {
