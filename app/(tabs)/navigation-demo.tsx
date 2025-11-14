@@ -25,6 +25,11 @@ export default function NavigationDemo() {
       action: () => router.push('/form-demo'),
     },
     {
+      title: 'Perfil de Usuario',
+      description: 'Abrir pantalla de perfil con parámetro de usuario',
+      action: () => router.push('/profile-demo'),
+    },
+    {
       title: 'Abrir Modal',
       description: 'Abrir pantalla modal (usa stack navigation)',
       action: () => router.push('/modal'),

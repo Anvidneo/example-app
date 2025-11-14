@@ -26,6 +26,13 @@ export default function ProfileDemo() {
       >
         <Text style={styles.buttonText}>Volver</Text>
       </TouchableOpacity>
+
+      <TouchableOpacity 
+        style={styles.buttonHome} 
+        onPress={() => router.replace('/')}
+      >
+        <Text style={styles.buttonText}>Home</Text>
+      </TouchableOpacity>
     </ThemedView>
   );
 }
@@ -60,6 +67,13 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: '#007AFF',
+    padding: 15,
+    borderRadius: 8,
+    alignItems: 'center',
+  },
+  buttonHome: {
+    marginTop: 10,
+    backgroundColor: '#848585ff',
     padding: 15,
     borderRadius: 8,
     alignItems: 'center',
