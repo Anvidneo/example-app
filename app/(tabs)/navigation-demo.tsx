@@ -6,6 +6,7 @@ import { IconSymbol } from '@/components/ui/icon-symbol';
 import { AppColors, Spacing } from '@/constants/app-constants';
 import { useThemeColor } from '@/hooks/use-theme-color';
 import { useRouter } from 'expo-router';
+import React from 'react';
 import { StyleSheet } from 'react-native';
 
 export default function NavigationDemo() {

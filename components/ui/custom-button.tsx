@@ -1,4 +1,5 @@
 import { AppColors, BorderRadius, FontSizes, Spacing } from '@/constants/app-constants';
+import React from 'react';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 
 interface ButtonProps {

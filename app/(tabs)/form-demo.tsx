@@ -6,6 +6,7 @@ import { IconSymbol } from '@/components/ui/icon-symbol';
 import { AppColors, BorderRadius, Spacing } from '@/constants/app-constants';
 import { useUserForm } from '@/hooks/use-user-form';
 import { useRouter } from 'expo-router';
+import React from 'react';
 import { Alert, StyleSheet, TextInput } from 'react-native';
 
 export default function FormDemo() {

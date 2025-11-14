@@ -5,6 +5,7 @@ import { CustomButton } from '@/components/ui/custom-button';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { AppColors, Spacing } from '@/constants/app-constants';
 import { useLocalSearchParams, useRouter } from 'expo-router';
+import React from 'react';
 import { Alert, StyleSheet } from 'react-native';
 
 export default function NavigationDetailScreen() {
