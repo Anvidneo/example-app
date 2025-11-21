@@ -37,6 +37,7 @@ export default function HomeScreen() {
         {isAuthenticated ? (
           <View>
             <ThemedText style={styles.authText}>✅ Usuario autenticado</ThemedText>
+            <ThemedText style={styles.infoText}>Username: {authData?.username}</ThemedText>
             <ThemedText style={styles.infoText}>Role: {authData?.role}</ThemedText>
             <ThemedText style={styles.infoText}>Profile: {authData?.profile}</ThemedText>
             <ThemedText style={styles.infoText}>Token expira en: {authData?.expireIn}s</ThemedText>

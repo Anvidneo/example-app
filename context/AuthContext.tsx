@@ -3,6 +3,7 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 
 interface AuthData {
     token: string;
+    username: string;
     expireIn: number;
     role: number;
     profile: number;

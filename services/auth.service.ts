@@ -10,6 +10,7 @@ export interface LoginResponse {
     status: number;
     message: string;
     data: {
+        username: string;
         token: string;
         expireIn: number;
         role: number;
@@ -33,7 +34,8 @@ export const authService = {
                 throw new Error(`Error: ${response.status} ${response.statusText}`);
             }
 
-            const data: LoginResponse = await response.json();
+            let data: LoginResponse = await response.json();
+            data.data.username = credentials.username;
             return data;
         } catch (error) {
             console.error('Error en login:', error);
