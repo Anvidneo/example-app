@@ -1,13 +1,22 @@
 import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import { Platform, StyleSheet, TouchableOpacity, View } from 'react-native';
 
 import { HelloWave } from '@/components/hello-wave';
 import ParallaxScrollView from '@/components/parallax-scroll-view';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
-import { Link } from 'expo-router';
+import { useAuth } from '@/context/AuthContext';
+import { Link, useRouter } from 'expo-router';
 
 export default function HomeScreen() {
+  const router = useRouter();
+  const { authData, isAuthenticated, logout } = useAuth();
+
+  const handleLogout = async () => {
+    await logout();
+    router.replace('/login');
+  };
+
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
@@ -21,6 +30,36 @@ export default function HomeScreen() {
         <ThemedText type="title">Welcome!</ThemedText>
         <HelloWave />
       </ThemedView>
+
+      {/* Sección de autenticación */}
+      <ThemedView style={styles.authContainer}>
+        <ThemedText type="subtitle">Bridge a Cloud - Auth</ThemedText>
+        {isAuthenticated ? (
+          <View>
+            <ThemedText style={styles.authText}>✅ Usuario autenticado</ThemedText>
+            <ThemedText style={styles.infoText}>Role: {authData?.role}</ThemedText>
+            <ThemedText style={styles.infoText}>Profile: {authData?.profile}</ThemedText>
+            <ThemedText style={styles.infoText}>Token expira en: {authData?.expireIn}s</ThemedText>
+            <TouchableOpacity 
+              style={styles.logoutButton}
+              onPress={handleLogout}
+            >
+              <ThemedText style={styles.logoutButtonText}>Cerrar Sesión</ThemedText>
+            </TouchableOpacity>
+          </View>
+        ) : (
+          <View>
+            <ThemedText style={styles.authText}>❌ No autenticado</ThemedText>
+            <TouchableOpacity 
+              style={styles.loginButton}
+              onPress={() => router.push('/login')}
+            >
+              <ThemedText style={styles.loginButtonText}>Ir a Login</ThemedText>
+            </TouchableOpacity>
+          </View>
+        )}
+      </ThemedView>
+
       <ThemedView style={styles.stepContainer}>
         <ThemedText type="subtitle">Step 1: Try it</ThemedText>
         <ThemedText>
@@ -94,5 +133,42 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     position: 'absolute',
+  },
+  authContainer: {
+    gap: 8,
+    marginBottom: 16,
+    padding: 16,
+    borderRadius: 8,
+    backgroundColor: 'rgba(0, 122, 255, 0.1)',
+  },
+  authText: {
+    fontSize: 16,
+    marginBottom: 8,
+  },
+  infoText: {
+    fontSize: 14,
+    marginTop: 4,
+  },
+  loginButton: {
+    marginTop: 12,
+    backgroundColor: '#007AFF',
+    padding: 12,
+    borderRadius: 8,
+    alignItems: 'center',
+  },
+  loginButtonText: {
+    color: '#fff',
+    fontWeight: '600',
+  },
+  logoutButton: {
+    marginTop: 12,
+    backgroundColor: '#FF3B30',
+    padding: 12,
+    borderRadius: 8,
+    alignItems: 'center',
+  },
+  logoutButtonText: {
+    color: '#fff',
+    fontWeight: '600',
   },
 });
